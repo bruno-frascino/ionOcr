@@ -1,5 +1,7 @@
 {
   "name": "ionOcr",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
