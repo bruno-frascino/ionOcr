@@ -8,16 +8,18 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 })
 export class Tab2Page {
 
-  constructor(private barcodeScanner: BarcodeScanner){}
+  private bCodeData:string;
+  
+  constructor(private barcodeScanner: BarcodeScanner){
+    this.bCodeData = '';
+  }
 
-  private bCodeData;
-
-  public bScan(){
-    this.barcodeScanner.scan().then(barcodeData => {
-      console.log('Barcode data', barcodeData);
-
-      this.bCodeData = barcodeData;
-      console.log(`bCdata ${this.bCodeData}`);
+  public bScan() {
+    this.barcodeScanner.scan().then(data => {
+      this.bCodeData = '';
+      if( !data.cancelled ){
+        this.bCodeData = `Format: ${data.format} - Data: ${data.text}`;
+      }
 
      }).catch(err => {
          console.log('Error', err);
